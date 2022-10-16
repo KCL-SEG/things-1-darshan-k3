@@ -4,13 +4,13 @@ from .models import Thing
 # Create your tests here.
 class ThingsTestCase(TestCase):
     def setUp(self):
-        self.thing = Thing.objects.create_thing(
+        self.thing = Thing.objects.create(
             name="John",
             description = 'Hi. This is John',
             quantity=100
         )
 
-    #~~~~~~~~~UNIT TESTS FOR NAME~~~~~~~~~~~~~~~~
+    #~~~~~~~~~UNIT TESTS FOR NAME~~~~~~~~~~~~~~~~#
     
     def test_name_must_be_unique(self):
         second_thing = self._create_second_thing()
@@ -30,7 +30,7 @@ class ThingsTestCase(TestCase):
         self._assert_user_is_invalid()
 
 
-    #~~~~~~~~~UNIT TESTS FOR DESCRIPTION~~~~~~~~~~~~~~~~
+    #~~~~~~~~~UNIT TESTS FOR DESCRIPTION~~~~~~~~~~~~~~#
     
     def test_description_may_be_unique(self):
         second_thing = self._create_second_thing()
@@ -50,7 +50,7 @@ class ThingsTestCase(TestCase):
         self._assert_user_is_invalid()
 
 
-    #~~~~~~~~~UNIT TESTS FOR QUANTITY~~~~~~~~~~~~~~~~
+    #~~~~~~~~~UNIT TESTS FOR QUANTITY~~~~~~~~~~~~~~~~#
     
     def test_quantity_need_not_be_unique(self):
         second_thing = self._create_second_thing()
@@ -73,6 +73,7 @@ class ThingsTestCase(TestCase):
         self.thing.quantity = 101
         self._assert_user_is_invalid()
     
+    #~~~~~~~~~UNIT TESTS FOR QUANTITY~~~~~~~~~~~~~~~~#
     def _assert_user_is_valid(self):
         try:
             self.user.full_clean()
